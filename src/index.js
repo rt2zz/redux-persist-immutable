@@ -15,7 +15,7 @@ export function stateSetter(state, key, value) {
 };
 
 export function stateReconciler(state, inboundState, reducedState, logger) {
- let newState = new Map();
+ let newState = reducedState ? reducedState : new Map();
 
  Object.keys(inboundState).forEach((key) => {
    // if initialState does not have key, skip auto rehydration
