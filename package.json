@@ -1,7 +1,7 @@
 {
-  "name": "redux-persist-immutable-state",
-  "version": "3.2.5",
-  "description": "stateIterator, stateGetter, stateSetter and stateReconciler that supports a top level immutable.js state for redux-persist",
+  "name": "redux-persist-immutable",
+  "version": "4.0.0-alpha1",
+  "description": "top level immutablejs support for redux-persist",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rufman/redux-persist-immutable-state.git"
+    "url": "https://github.com/rt2zz/redux-persist-immutable.git"
   },
   "keywords": [
     "redux",
