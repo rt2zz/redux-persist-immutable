@@ -13,19 +13,19 @@ import { stateReconciler } from './reconciler';
 
 const extendConfig = (config) => {
   let incomingTransforms = config.transforms || []
-  transforms = [...incomingTransforms, immutableTransform]
+  let transforms = [...incomingTransforms, immutableTransform]
   return {...config, ...operators, stateReconciler, transforms}
 }
 
-const autoRehydrate = (config, ...args) => {
+const autoRehydrate = (config = {}, ...args) => {
   return baseAutoRehydrate(extendConfig(config), ...args);
 };
 
-const createPersistor = (store, config, ...args) => {
+const createPersistor = (store, config = {}, ...args) => {
   return baseCreatePersistor(store, extendConfig(config), ...args);
 };
 
-const persistStore = (store, config, ...args) => {
+const persistStore = (store, config = {}, ...args) => {
   return basePersistStore(store, extendConfig(config), ...args);
 };
 
