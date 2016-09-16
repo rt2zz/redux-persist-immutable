@@ -1,21 +1,10 @@
-# redux-persist-immutable-state
-Implements stateIterator, stateGetter, stateSetter and stateReconciler for an [ImmutableJS](https://facebook.github.io/immutable-js/) root state.
-
-# Dependencies
-- [redux-persist](https://www.npmjs.com/package/redux-persist)
-- [redux-persist-immutable](https://www.npmjs.com/package/redux-persist-immutable) -> If you're substate are ImmutableJS objects
+# Redux Persist Immutable
+A wrapper around redux-persist that provides  [ImmutableJS](https://facebook.github.io/immutable-js/) support.
 
 # Usage
-
+For entire api see [redux-persist docs](https://github.com/rt2zz/redux-persist). This library is a drop in replacement.
 ```
-import { persistStore } from 'redux-persist';
-import { stateIterator, stateGetter, stateSetter, 
-         stateReconciler, lastStateInit } from 'redux-persist-immutable-state';
+import { persistStore } from 'redux-persist-immutable'
 
-persistStore(state, {
-  transforms: [reduxPersistImmutable], 
-  stateIterator: stateIterator,  
-  stateGetter: stateGetter, stateSetter: stateSetter,
-  lastStateInit: lastStateInit
-});
+persistStore(state)
 ```

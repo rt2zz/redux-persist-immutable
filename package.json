@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "immutable": "^3.8.1",
-    "redux-persist": "^3.6.0-alpha1"
+    "redux-persist": "^4.0.0-alpha1",
+    "redux-persist-transform-immutable": "^3.2.0"
   }
 }
