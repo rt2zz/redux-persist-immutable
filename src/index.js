@@ -12,7 +12,8 @@ import * as operators from './operators';
 import { stateReconciler } from './reconciler';
 
 const extendConfig = (config) => {
-  transforms = [...config.transforms, immutableTransform]
+  let incomingTransforms = config.transforms || []
+  transforms = [...incomingTransforms, immutableTransform]
   return {...config, ...operators, stateReconciler, transforms}
 }
 
