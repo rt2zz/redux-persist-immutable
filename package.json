@@ -3,6 +3,10 @@
   "version": "4.0.0-alpha6",
   "description": "top level immutablejs support for redux-persist",
   "main": "lib/index.js",
+  "files": [
+    "lib",
+    "constants.js"
+  ],
   "scripts": {
     "build": "babel src --out-dir lib",
     "clean": "rimraf lib dist",
