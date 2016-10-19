@@ -13,7 +13,8 @@ import { stateReconciler } from './reconciler';
 
 const extendConfig = (config) => {
   let incomingTransforms = config.transforms || []
-  let transforms = [...incomingTransforms, immutableTransform()]
+  let immutableTransformOptions = config.immutableTransformOptions || {}
+  let transforms = [...incomingTransforms, immutableTransform(immutableTransformOptions)]
   return {...config, ...operators, stateReconciler, transforms}
 }
 
