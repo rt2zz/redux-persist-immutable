@@ -8,3 +8,8 @@ import { persistStore } from 'redux-persist-immutable'
 
 persistStore(state)
 ```
+
+# Immutable records
+```js
+persistStore(state, { records: [SomeRecord] })
+```
