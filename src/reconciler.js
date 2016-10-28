@@ -16,9 +16,9 @@ export function stateReconciler(state, inboundState, reducedState, logger) {
 
    // otherwise take the inboundState
    if (state.has(key)) {
-     newState = state.merge(inboundState) // shallow merge
+     newState = newState.mergeIn([key], inboundState[key]) // shallow merge
    } else {
-     newState = state.set(key, inboundState[key]) // hard set
+     newState = newState.set(key, inboundState[key]) // hard set
    }
 
    if (logger) console.log('redux-persist/autoRehydrate: key `%s`, rehydrated to ', key, newState[key])
