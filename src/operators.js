@@ -1,15 +1,15 @@
-import { Map } from 'immutable';
+import { Map } from 'immutable'
 
-export const _stateInit = new Map();
+export const _stateInit = new Map()
 
 export function _stateIterator(state, callback) {
-  return state.forEach(callback);
+  return state.forEach(callback)
 }
 
 export function _stateGetter(state, key) {
- return state.get(key);
-};
+ return state.get(key)
+}
 
 export function _stateSetter(state, key, value) {
- return state.set(key, value);
-};
+ return state.set(key, value)
+}

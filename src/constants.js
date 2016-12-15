@@ -1,1 +1,1 @@
-export * from 'redux-persist/constants';
+export * from 'redux-persist/constants'

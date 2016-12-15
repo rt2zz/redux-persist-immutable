@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 
 export function stateReconciler(state, inboundState, reducedState, logger) {
- let newState = reducedState ? reducedState : new Map();
+ let newState = reducedState ? reducedState : new Map()
 
  Object.keys(inboundState).forEach((key) => {
    // if initialState does not have key, skip auto rehydration
@@ -25,4 +25,4 @@ export function stateReconciler(state, inboundState, reducedState, logger) {
  })
 
  return newState
-};
+}
