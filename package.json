@@ -1,6 +1,6 @@
 {
   "name": "redux-persist-immutable",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "top level immutablejs support for redux-persist",
   "main": "lib/index.js",
   "files": [
