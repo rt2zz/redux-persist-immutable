@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 
 export function stateReconciler(state, inboundState, reducedState, logger) {
- let newState = reducedState ? reducedState : new Map()
+ let newState = reducedState ? reducedState : Map()
 
  Object.keys(inboundState).forEach((key) => {
    // if initialState does not have key, skip auto rehydration
@@ -21,7 +21,7 @@ export function stateReconciler(state, inboundState, reducedState, logger) {
      newState = newState.set(key, inboundState[key]) // hard set
    }
 
-   if (logger) console.log('redux-persist/autoRehydrate: key `%s`, rehydrated to ', key, newState[key])
+   if (logger) console.log('redux-persist/autoRehydrate: key `%s`, rehydrated to ', key, newState.get(key))
  })
 
  return newState
