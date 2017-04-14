@@ -4,9 +4,9 @@ A wrapper around redux-persist that provides  [ImmutableJS](https://facebook.git
 # Usage
 For entire api see [redux-persist docs](https://github.com/rt2zz/redux-persist). This library is a drop in replacement.
 ```js
-import { persistStore } from 'redux-persist-immutable'
+import { persistStore, autoRehydrate } from 'redux-persist-immutable'
 
-persistStore(state)
+persistStore(store)
 ```
 
 # Immutable records
