@@ -4,9 +4,6 @@ export function stateReconciler(state, inboundState, reducedState, logger) {
  let newState = reducedState ? reducedState : Map()
 
  Object.keys(inboundState).forEach((key) => {
-   // if initialState does not have key, skip auto rehydration
-   if (!state.has(key)) return
-
    // if reducer modifies substate, skip auto rehydration
    if (state.get(key) !== reducedState.get(key)) {
      if (logger) console.log('redux-persist/autoRehydrate: sub state for key `%s` modified, skipping autoRehydrate.', key)
