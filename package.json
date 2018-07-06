@@ -30,14 +30,14 @@
     "babel-cli": "^6.9.0",
     "babel-eslint": "^6.0.4",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-env": "^1.6.1",
     "immutable": "^3.8.1",
     "redux": "^3.5.2",
     "rimraf": "^2.5.2"
   },
   "dependencies": {
     "redux-persist": "^4.0.0",
-    "redux-persist-transform-immutable": "^4.1.0"
+    "redux-persist-transform-immutable": "^5.0.0"
   },
   "peerDependencies": {
     "immutable": "*"
