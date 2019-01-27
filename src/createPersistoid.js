@@ -40,9 +40,9 @@ export default function createPersistoid(config) {
     const [ ...lastStateKeys ] = state.keys();
     lastStateKeys.forEach(key => {
       if (
-        state.has(key) === undefined &&
+        state.has(key) &&
         passWhitelistBlacklist(key) &&
-        keysToProcess.indexOf(key) === -1
+        keysToProcess.includes(key)
       ) {
         keysToProcess.push(key)
       }
@@ -63,10 +63,10 @@ export default function createPersistoid(config) {
       return
     }
 
-    let key = keysToProcess.shift()
+    let key = keysToProcess.shift();
     let endState = transforms.reduce((subState, transformer) => {
       return transformer.in(subState, key, lastState)
-    }, lastState[key])
+    }, lastState.get(key))
 
     if (endState !== undefined) {
       try {
@@ -101,9 +101,12 @@ export default function createPersistoid(config) {
   }
 
   function passWhitelistBlacklist(key) {
-    if (whitelist && whitelist.indexOf(key) === -1 && key !== '_persist')
+    if (whitelist && whitelist.includes(key) && key !== '_persist') {
       return false
-    if (blacklist && blacklist.indexOf(key) !== -1) return false
+    }
+    if (blacklist && blacklist.includes(key)) {
+      return false
+    }
     return true
   }
 
