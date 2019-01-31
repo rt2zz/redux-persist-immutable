@@ -26,7 +26,6 @@ export default function createPersistoid(config) {
   let writePromise = null
 
   const update = (state) => {
-    console.log('update', state, timeIterator, keysToProcess);
     // add any changed keys to the queue
     const [ ...keys ] = state.keys();
     keys.forEach(key => {
@@ -61,7 +60,6 @@ export default function createPersistoid(config) {
     }
 
     let key = keysToProcess.shift();
-    console.log('processNextKey', lastState, key);
     let endState = transforms.reduce((subState, transformer) => {
       return transformer.in(subState, key, lastState)
     }, lastState.get(key))
