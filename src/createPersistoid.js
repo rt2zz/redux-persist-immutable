@@ -26,12 +26,13 @@ export default function createPersistoid(config) {
   let writePromise = null
 
   const update = (state) => {
+    console.log('update', state, timeIterator, keysToProcess);
     // add any changed keys to the queue
     const [ ...keys ] = state.keys();
     keys.forEach(key => {
       if (!passWhitelistBlacklist(key)) return // is keyspace ignored? noop
       if (lastState.has(key) === state.has(key)) return // value unchanged? noop
-      if (keysToProcess.indexOf(key) !== -1) return // is key already queued? noop
+      if (keysToProcess.includes(key)) return // is key already queued? noop
       keysToProcess.push(key) // add key to queue
     })
 
@@ -39,11 +40,7 @@ export default function createPersistoid(config) {
     //add it for processing too
     const [ ...lastStateKeys ] = state.keys();
     lastStateKeys.forEach(key => {
-      if (
-        state.has(key) &&
-        passWhitelistBlacklist(key) &&
-        keysToProcess.includes(key)
-      ) {
+      if (passWhitelistBlacklist(key) && !keysToProcess.includes(key)) {
         keysToProcess.push(key)
       }
     })
@@ -53,7 +50,7 @@ export default function createPersistoid(config) {
       timeIterator = setInterval(processNextKey, throttle)
     }
 
-    lastState = state
+    lastState = state;
   }
 
   function processNextKey() {
@@ -64,6 +61,7 @@ export default function createPersistoid(config) {
     }
 
     let key = keysToProcess.shift();
+    console.log('processNextKey', lastState, key);
     let endState = transforms.reduce((subState, transformer) => {
       return transformer.in(subState, key, lastState)
     }, lastState.get(key))
