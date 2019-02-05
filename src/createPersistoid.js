@@ -1,15 +1,13 @@
-import { KEY_PREFIX, REHYDRATE } from 'redux-persist'
-import Serialize from 'remotedev-serialize';
-import immutableTransform from 'redux-persist-transform-immutable';
-import Immutable, { Map } from 'immutable';
+import { KEY_PREFIX } from 'redux-persist'
+import { Map } from 'immutable';
 
-const defaultSerialize = Serialize.immutable(Immutable).stringify
+const defaultSerialize = x => x;
 
 export default function createPersistoid(config) {
   // defaults
   const blacklist = config.blacklist || null;
   const whitelist = config.whitelist || null;
-  const transforms = config.transforms || [immutableTransform()];
+  const transforms = config.transforms || [];
   const throttle = config.throttle || 0;
   const storageKey = `${
     config.keyPrefix !== undefined ? config.keyPrefix : KEY_PREFIX
@@ -92,7 +90,7 @@ export default function createPersistoid(config) {
       }
     })
     writePromise = storage
-      .setItem(storageKey, serialize(stagedState))
+      .setItem(storageKey, JSON.stringify(serialize(stagedState)))
       .catch(onWriteFail)
   }
 

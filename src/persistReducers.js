@@ -139,8 +139,14 @@ export default function persistReducer(config, baseReducer) {
         if (_purge) {
           return baseReducer(restState, action).set('_persist', _persist.set({ 'rehydrated': true }));
         }
-        // @NOTE if key does not match, will continue to default else below
-        if (action.key === config.key) {
+
+
+        // @NOTE if hydration event for other reducer, will do nothing
+        if (action.key !== config.key) {
+          return state;
+        }
+
+
           let reducedState = baseReducer(restState, action);
           let inboundState = action.payload
           // only reconcile state if stateReconciler and inboundState are both defined
@@ -151,7 +157,7 @@ export default function persistReducer(config, baseReducer) {
           reconciledRest = reconciledRest.set('_persist', _persist && _persist.set('rehydrated', true) || Map({ version, rehydrated: true }));
           let newState = baseReducer(reconciledRest, action);
           return conditionalUpdate(newState)
-        }
+
       }
     }
 
