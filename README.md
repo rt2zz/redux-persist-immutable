@@ -11,7 +11,7 @@ import { persistReducer, persistCombineReducers } from 'redux-persist-immutable'
 ```js
 const persistConfig = {
   key: 'root',
-  transforms: [encryptor, immutableTransform()],/*immutableTransform should define only if using more than this tramsformer, otherwise immutableTransform adds implicit automaticly*/
+  transforms: [encryptor],
   storage
 };
 

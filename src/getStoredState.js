@@ -1,8 +1,7 @@
 import { KEY_PREFIX } from 'redux-persist'
-import Serialize from 'remotedev-serialize';
-import Immutable, { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 
-const defaultDeserialize = Serialize.immutable(Immutable).parse;
+const defaultDeserialize = x=>x
 
 export default function getStoredState(config) {
   const transforms = config.transforms || []
@@ -17,14 +16,14 @@ export default function getStoredState(config) {
     else {
       try {
         let state = Map();
-        let rawState = deserialize(serialized);
-        const [ ...rawStateKeys ] = rawState.keys();
+        let rawState = deserialize(JSON.parse(serialized));
+        const rawStateKeys  = Object.keys(rawState);
         rawStateKeys.forEach(key => {
           state = state.set(key, transforms.reduceRight((subState, transformer) => {
             return transformer.out(subState, key, rawState)
-          }, deserialize(rawState.get(key))));
+          }, rawState[key]));
         });
-        return state
+        return fromJS(state)
       } catch (err) {
         if (process.env.NODE_ENV !== 'production' && debug)
           console.log(
