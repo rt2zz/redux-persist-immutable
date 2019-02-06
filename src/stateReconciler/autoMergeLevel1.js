@@ -1,7 +1,5 @@
-import { fromJSGreedy } from '../fromJSGreedy';
-
 const merge = (state, payload) => {
-  return state.merge(fromJSGreedy(payload))
+  return state.merge(payload)
 }
 
 export default merge;
