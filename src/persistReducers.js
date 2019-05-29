@@ -95,7 +95,10 @@ export default function persistReducer(config, baseReducer) {
               _persistoid = createPersistoid(config);
           }
           // @NOTE PERSIST can be called multiple times, noop after the first
-          if (_persist) return state
+          if (_persist) {
+            _sealed = true;
+            return state;
+          }
 
           if (
               typeof action.rehydrate !== 'function' ||
