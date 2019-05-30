@@ -1,11 +1,10 @@
 {
   "name": "redux-persist-immutable",
-  "version": "4.3.1",
+  "version": "5.0.0",
   "description": "top level immutablejs support for redux-persist",
   "main": "lib/index.js",
   "files": [
-    "lib",
-    "constants.js"
+    "lib"
   ],
   "scripts": {
     "build": "babel src --out-dir lib",
@@ -36,8 +35,8 @@
     "rimraf": "^2.5.2"
   },
   "dependencies": {
-    "redux-persist": "^4.0.0",
-    "redux-persist-transform-immutable": "^4.1.0"
+    "redux-immutable": "^4.0.0",
+    "redux-persist": "^5.0.0"
   },
   "peerDependencies": {
     "immutable": "*"
