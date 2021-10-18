@@ -4,6 +4,14 @@ export function stateReconciler(state, inboundState, reducedState, logger) {
  let newState = reducedState ? reducedState : Map()
 
  Object.keys(inboundState).forEach((key) => {
+   // Immutable 4 requires iterable/array objects to be stored for
+   // a merge so strings are not allowed
+   if (typeof key === 'string') {
+    key = [key]
+   }
+   if (typeof inboundState[key] === 'string') {
+    inboundState[key] = [inboundState[key]]
+   }
    // if initialState does not have key, skip auto rehydration
    if (!state.has(key)) return
 

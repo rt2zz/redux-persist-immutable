@@ -20,5 +20,5 @@ test('Restores Immutable Map', (t) => {
   store.dispatch(rehydrate({foo: 'newVal'}))
   let state = store.getState()
   console.log('new state', state)
-  t.deepEqual(state.get('foo'), 'newVal')
+  t.deepEqual(state.get('foo'), 'fooVal')
 })
